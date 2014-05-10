@@ -372,6 +372,26 @@ FRAGMENT;
 
     }
 
+    /**
+     *
+     * @param unknown $selector
+     *
+     * @return \Browser\Casper
+     */
+    public function checkAndClick($selector)
+    {
+        $fragment =<<<FRAGMENT
+if (casper.exists('$selector')) {
+    casper.click('$selector');
+}        
+
+FRAGMENT;
+
+        $this->_script .= $fragment;
+
+        return $this;
+    }    
+
 
     public function evaluate($function)
     {
